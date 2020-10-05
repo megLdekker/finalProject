@@ -5,4 +5,4 @@ var setBanner=function(message)
 }
 var successFCN = function()
 var projectPromise=d3.csv("Data/LGBTPopulation.csv")
-projectPromise.then(succ)
+projectPromise.then(successFCN,)
