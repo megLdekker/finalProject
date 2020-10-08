@@ -1,9 +1,5 @@
-,,,,
-,,,,
-,"U.S. teenagers who felt sad or hopeless 2015-2017, by gender and sexual orientation",,,
-,"Percentage of high school students in the U.S. who felt sad or hopeless in 2015-2017, by gender and sexual orientation*",,,
-,,Females,Males,
-,Heterosexual,36.1,19,in %
-,Lesbian/Gay,59.4,39.4,in %
-,Bisexual,69.3,49.1,in %
-,Not sure,51,38.3,in %
+sexualOrientation,Females,Males
+Heterosexual,36.1,19
+Lesbian/Gay,59.4,39.4
+Bisexual,69.3,49.1
+Not sure,51,38.3
