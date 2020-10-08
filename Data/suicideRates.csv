@@ -1,6 +1,6 @@
-Age ,Number of died by suicide,Non-LGBT males (%),Non-LGBT females (%),All LGBT persons (%)
-12 - 14,49,51%,24%,24%
-15 - 17,191,59%,25%,16%
-18 - 20,356,71%,18%,12%
-21 - 24,666,73%,18%,9%
-25 - 29,947,77%,18%,8%
+age,straightMales,straightFemales,lgbt
+12 - 14,51,24,24
+15 - 17,59,25,16
+18 - 20,71,18,12
+21 - 24,73,18,9
+25 - 29,77,18,8

@@ -59,7 +59,7 @@ var makeTranslateString = function(x,y)
     return "translate("+x+","+y+")";
 }
 
-var drawAxes = function(graphDim,margins,xScale,yScale)
+var drawAxes2 = function(graphDim,margins,xScale,yScale)
 {
    console.log(graphDim)
     var xAxis = d3.axisBottom();
@@ -77,7 +77,7 @@ var drawAxes = function(graphDim,margins,xScale,yScale)
     
 }
 
-var drawLabels = function(graphDim,margins)
+var drawLabels2 = function(graphDim,margins)
 {
     var labels = d3.select("#svg2")
     .append("g")
@@ -186,13 +186,13 @@ var initGraph = function(sads)
         d3.scaleOrdinal()
     .range(["red","blue"])
     
-    drawAxes(graph,margins,xScale,yScale);
+    drawAxes2(graph,margins,xScale,yScale);
     var g0=target.append("g")
     .attr("transform","translate(45,0)")
     
     drawsad1(sads,target,graph,xScale,yScale,colorScale);
     drawsad2(sads,g0,graph,xScale,yScale,colorScale);
-    drawLabels(graph,margins);
+    drawLabels2(graph,margins);
     drawLegend2(graph,margins);
     
 }

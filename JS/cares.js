@@ -1,56 +1,60 @@
-var drawreasons1= function(sad,target,graphDim,xScale,yScale,colorScale)
+var drawcare1= function(care,target,graphDim,xScale,yScale,colorScale)
 {
     target.selectAll("rect")
-    .data(sad)
+    .data(care)
     .enter()
     .append("rect")
     
-    .attr("x",function(sad)
+   
+    
+    .attr("x",function(care)
          {
-        console.log(xScale)
-        return xScale(sad.sexualOrientation);
+        console.log(care.cisgen)
+        return xScale(care.Reasons);
     })
-    .attr("y",function(sads)
-         {console.log(yScale(sads.Males))
-        return yScale(sads.Males)
-    })
-    .attr("width",xScale.bandwidth)
-    .attr("height",function(sad)
-         {
-        return graphDim.height-yScale(sad.Males)
+    .attr("y",function(care)
+         {console.log(yScale(care.cisgen))
+        return yScale(care.cisgen)
     })
     
-    .attr("fill",function(sad)
+   .attr("width",xScale.bandwidth)
+    .attr("height",function(care)
          {
-        return colorScale("Male")
+        console.log(yScale(care.cisgen))
+        return graphDim.height-yScale(care.cisgen)
+    })
+    
+    .attr("fill",function(care)
+         {
+        return colorScale("cisgen")
     })
     
           }
-var drawsad2= function(sad,target,graphDim,xScale,yScale,colorScale)
+var drawcare2= function(care,target,graphDim,xScale,yScale,colorScale)
 {
     target.selectAll("rect")
-    .data(sad)
+    .data(care)
     .enter()
     .append("rect")
     
-    .attr("x",function(sad)
+    .attr("x",function(care)
          {
-        console.log(xScale(sad.sexualOrientation))
-        return xScale(sad.sexualOrientation);
+        console.log(xScale(care.reasons))
+        return xScale(care.Reasons);
     })
-    .attr("y",function(sads)
-         {console.log(yScale(sads.Females))
-        return yScale(sads.Females)
+    .attr("y",function(cares)
+         {console.log(yScale(cares.transgennb))
+        return yScale(cares.transgennb)
     })
     .attr("width",xScale.bandwidth)
-    .attr("height",function(sad)
+    .attr("height",function(care)
          {
-        return graphDim.height-yScale(sad.Females)
+        return graphDim.height-yScale(care.transgennb)
     })
          
-    .attr("fill",function(sad)
+    .attr("fill",function(care)
          {
-        return colorScale("Female")
+        return colorScale("transgennb")
     })
         
           }
@@ -59,39 +63,39 @@ var makeTranslateString = function(x,y)
     return "translate("+x+","+y+")";
 }
 
-var drawAxes = function(graphDim,margins,xScale,yScale)
+var drawAxes4 = function(graphDim,margins,xScale,yScale)
 {
    console.log(graphDim)
     var xAxis = d3.axisBottom();
     xAxis.scale(xScale)
-    d3.select("#svg2").append("g")
+    d3.select("#svg4").append("g")
     .attr("class","axis")
     .attr("transform", "translate("+margins.left+"," + (graphDim.height+margins.top) + ")")
     .call(xAxis)
     var yAxis = d3.axisLeft();
     yAxis.scale(yScale)
-    d3.select("#svg2").append("g")
+    d3.select("#svg4").append("g")
     .attr("class","axis")
     .attr("transform", "translate("+margins.bottom+"," + margins.right + ")")
     .call(yAxis) 
     
 }
 
-var drawLabels = function(graphDim,margins)
+var drawLabels4 = function(graphDim,margins)
 {
-    var labels = d3.select("#svg2")
+    var labels = d3.select("#svg4")
     .append("g")
     .classed("labels",true)
     
     labels.append("text")
-    .text("Percentage of Teenagers Who Felt Sad/Hopeless (2015-2017)")
+    .text("Reasons For Inability to Seek Care")
     .classed("title",true)
     .attr("text-anchor","middle")
     .attr("x", margins.left+(graphDim.width/2))
     .attr("y", margins.top+(8))
     
     labels.append("text")
-    .text("Sexual Orientation")
+    .text("Reasons")
     .classed("label", true)
     .attr("text-anchor", "middle")
     .attr("x", margins.left+(graphDim.width/2))
@@ -105,19 +109,19 @@ var drawLabels = function(graphDim,margins)
     
 }
 
-var drawLegend2 = function(graphDim,margins)
+var drawLegend4 = function(graphDim,margins)
 {
     var categories = [
         {
-            class:"Females",
-            name:"Females"
+            class:"cisgen",
+            name:"Cisgender Individuals"
         },
         {
-            class:"Males",
-            name:"Males"
+            class:"transgennb",
+            name:"Transgender/Non-Binary Individuals"
         }
     ]
-    var legend = d3.select("#svg2")
+    var legend = d3.select("#svg4")
         .append("g")
         .classed("legend",true)
         .attr("transform","translate("+
@@ -152,9 +156,9 @@ var drawLegend2 = function(graphDim,margins)
     
 }
 
-var initGraph = function(sads)
+var initGraph4 = function(cares)
 {
-    var screen = {width:600,height:360}
+    var screen = {width:1250,height:360}
     var margins = {left:30,right:20,top:20,bottom:30}
     
     var graph = 
@@ -164,47 +168,48 @@ var initGraph = function(sads)
         }
     console.log(graph);
     
-    d3.select("#svg2")
+    d3.select("#svg4")
     .attr("width",screen.width)
     .attr("height",screen.height)
     
-    var target = d3.select("#svg2")
+    var target = d3.select("#svg4")
     .append("g")
     .attr("id","#graph")
     .attr("transform","translate("+margins.left+","+margins.top+")");
     
     var xScale = d3.scaleBand()
-.domain(["Heterosexual","Lesbian/Gay","Bisexual","Not sure"])
+.domain(["Affordability","Parent Permission","LGBTQ Competent Provider","Transportation","Fears of Being Outed","Previous Negative Experience","Lack of LGBTQ Providers"])
     .range([0,(graph.width/1.5)])
     .paddingInner(.6)
     
     var yScale = d3.scaleLinear()
-    .domain([0,80])
+    .domain([0,60])
     .range([graph.height,0])
     
     var colorScale=
         d3.scaleOrdinal()
     .range(["red","blue"])
     
-    drawAxes(graph,margins,xScale,yScale);
+    drawAxes4(graph,margins,xScale,yScale);
     var g0=target.append("g")
-    .attr("transform","translate(45,0)")
+    .attr("transform","translate(51,0)")
     
-    drawsad1(sads,target,graph,xScale,yScale,colorScale);
-    drawsad2(sads,g0,graph,xScale,yScale,colorScale);
-    drawLabels(graph,margins);
-    drawLegend2(graph,margins);
+    drawcare1(cares,target,graph,xScale,yScale,colorScale);
+    drawcare2(cares,g0,graph,xScale,yScale,colorScale);
+    drawLabels4(graph,margins);
+    drawLegend4(graph,margins);
     
 }
 
-var reasonsPromise = d3.csv("Data/reasons.csv");
-var succFCN = function(reasons)
+var caresPromise = d3.csv("Data/cares.csv");
+var succFCN = function(cares)
 {
-    console.log("Reasons",reasons);
+    console.log("Cares",cares);
+    initGraph4(cares)
     
 }
 var failFCN = function(error)
 {
     console.log("Give Me One Reason",error);
 }
-reasonsPromise.then(succFCN,failFCN)
+caresPromise.then(succFCN,failFCN)
